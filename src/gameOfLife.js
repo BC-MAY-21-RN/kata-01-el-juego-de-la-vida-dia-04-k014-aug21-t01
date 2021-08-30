@@ -15,26 +15,18 @@ export class GameOfLife {
   }
 
   applyRules(matrix, totalNeighbours, x, y) {
-    if (
-      matrix[x][y].isAlive() &&
-      (totalNeighbours < 2 || totalNeighbours > 3)
-    ) {
-      matrix[x][y].kill();
+    let cell = matrix[x][y];
+    if (cell.isAlive() && this.validateLiveCells(totalNeighbours)) {
+      cell.kill();
     }
 
-    if (!matrix[x][y].isAlive() && totalNeighbours == 3) {
-      matrix[x][y].alive();
+    if (!cell.isAlive() && totalNeighbours == 3) {
+      cell.alive();
     }
   }
 
-  printGrid(grid) {
-    let print = "";
-    grid.forEach((row) => {
-      row.forEach((col) => {
-        print += col.getState();
-      });
-      print += "\n";
-    });
-    console.log(print);
+  validateLiveCells(neighbours) {
+    return neighbours < 2 || neighbours > 3;
   }
+
 }
