@@ -4,7 +4,7 @@
   "description": "![BrightCoders Logo](img/logo-bc.png)",
   "main": "index.js",
   "scripts": {
-    "test": "jest --no-cahce ./*",
+    "test": "jest --no-cache ./*",
     "watch": "jest --no-cache --watch ./*",
     "lint": "eslint ."
   },
