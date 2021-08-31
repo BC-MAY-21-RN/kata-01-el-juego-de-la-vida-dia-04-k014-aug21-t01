@@ -25,17 +25,11 @@ describe("board", () => {
 
   describe("cell position", () => {
     test("should belongs to board", () => {
-      validCoords.forEach((coord) => {
-        const [x, y] = coord;
-        expect(board.isCoordValid({ x, y })).toBeTruthy();
-      });
+      expectCoords(board, validCoords, true);
     });
 
     test("shouldn't belongs to board", () => {
-      invalidCoords.forEach((coord) => {
-        const [x, y] = coord;
-        expect(board.isCoordValid({ x, y })).toBeFalsy();
-      });
+      expectCoords(board, invalidCoords, false);
     });
   });
 
@@ -64,3 +58,10 @@ describe("board", () => {
     expect(liveNeighbours).toBe(1);
   });
 });
+
+function expectCoords(board, coords, bool) {
+  coords.forEach((coord) => {
+    const [x, y] = coord;
+    expect(board.isCoordValid({ x, y })).toBe(bool);
+  });
+}
